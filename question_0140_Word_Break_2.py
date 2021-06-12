@@ -14,10 +14,9 @@ class Solution:
         ans = []
         def helper(temp, counter, trie_node):
             
-            if counter == (length):
-                if temp not in ans:
-                    if END in trie_node:
-                        ans.append(temp)
+            if counter == (length):                
+                if END in trie_node:
+                    ans.append(temp)
                 return
             
             if s[counter] not in trie_node:
