@@ -86,11 +86,7 @@ class Solution:
                 if grid2[i][j] == 1:
                     dfs(i, j)
                     count += 1
-        return count
-
-
-            
-
+        return count        
 
 # @lc code=end
 
