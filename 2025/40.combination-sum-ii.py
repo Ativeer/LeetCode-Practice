@@ -72,6 +72,7 @@ class Solution:
                 return
             
             for i in range(pos, len(candidates)):
+                # break if including current number will cross the target
                 if candidates[i] + curr_sum > target: break
                 if i != pos and candidates[i] == candidates[i-1]:
                     continue

@@ -100,8 +100,6 @@ class Solution:
                 stack.append(prev_num)
                 ptr += 1
 
-            
-
         ans = 0
         stack = stack[::-1]
         while stack:
@@ -114,7 +112,7 @@ class Solution:
                     ans -= following_num
             else:
                 ans += last_activity
-        return ans        
+        return ans
 
 # @lc code=end
 
