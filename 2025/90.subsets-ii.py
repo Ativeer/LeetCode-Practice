@@ -42,16 +42,21 @@ class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
         ans = []
-        visited = set()
 
         def backtrack(temp=[], ptr=0):
-            ans.append(temp[:])
-            visited.add(tuple(temp))
-            for i in range(ptr, len(nums)):
-                temp.append(nums[i])
-                if tuple(temp) not in visited:
-                    backtrack(temp, i+1)
-                temp.pop()
+            if ptr == len(nums):
+                ans.append(temp[:])
+                return
+
+            temp.append(nums[ptr])
+            backtrack(temp, ptr+1)
+            temp.pop()
+
+            # exclude all the duplicate entries from here
+            j = ptr
+            while j < len(nums) and nums[j] == nums[ptr]:
+                j += 1
+            backtrack(temp, j)
 
                 
         backtrack()
