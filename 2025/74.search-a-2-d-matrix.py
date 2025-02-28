@@ -57,22 +57,52 @@
 # @lc code=start
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        new_array = []
-        for row in matrix:
-            new_array += row
+        # new_array = []
+        # for row in matrix:
+        #     new_array += row
         
-        low = 0
-        high = len(new_array)-1
+        # low = 0
+        # high = len(new_array)-1
 
-        while low <= high:
-            mid = low + (high-low)//2
-            if new_array[mid] == target:
-                return True
+        # while low <= high:
+        #     mid = low + (high-low)//2
+        #     if new_array[mid] == target:
+        #         return True
             
-            if new_array[mid] > target:
-                high = mid - 1
+        #     if new_array[mid] > target:
+        #         high = mid - 1
+        #     else:
+        #         low = mid + 1
+        # return False
+
+
+        start = 0
+        end = len(matrix) - 1
+
+        while start <= end:
+            mid = start + (end - start) // 2
+            if matrix[mid][0] <= target and target <= matrix[mid][-1]:
+                break
+            if matrix[mid][0] > target:
+                end = mid - 1
             else:
-                low = mid + 1
+                start = mid + 1
+            
+
+        row = mid
+        left = 0
+        right = len(matrix[row]) - 1
+
+        while left <= right:
+            mid = (left + right) // 2
+
+            if matrix[row][mid] == target:
+                return True
+            elif matrix[row][mid] > target:
+                right = mid - 1
+            else:
+                left = mid + 1
+
         return False
     
 # @lc code=end
