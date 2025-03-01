@@ -57,17 +57,33 @@
 # @lc code=start
 class Solution:
     def findKthPositive(self, arr: List[int], k: int) -> int:
-        n = [i for i in range(len(arr)+ k)]
+        # n = [i for i in range(len(arr)+ k)]
 
-        for num in arr:
-            if num <= len(n):
-                n[num-1] = -1
+        # for num in arr:
+        #     if num <= len(n):
+        #         n[num-1] = -1
         
-        for k_, i in enumerate(n):
-            if i != -1:
-                k -= 1
-                if k == 0:
-                    return k_ + 1
+        # for k_, i in enumerate(n):
+        #     if i != -1:
+        #         k -= 1
+        #         if k == 0:
+        #             return k_ + 1
+
+        start = 0
+        end = len(arr)-1
+
+        while start <= end:
+            mid = start + (end - start) // 2
+            mid_number = arr[mid]
+            diff = mid_number - mid - 1
+            # if diff == k:
+            #     return mid_number - k
+            if diff < k:
+                # k -= diff
+                start = mid + 1
+            else:
+                end = mid - 1
+        return start + k
 
 
 # @lc code=end
