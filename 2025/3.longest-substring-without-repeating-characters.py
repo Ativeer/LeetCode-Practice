@@ -56,33 +56,52 @@
 # @lc code=start
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        if not s:
-            return 0
+        # if not s:
+        #     return 0
 
-        start_window = 0
-        end_window = 1
+        # start_window = 0
+        # end_window = 1
 
+        # ans = 1
+        # letters_in_window = set()
+        # letters_in_window.add(s[0])
+
+        # while end_window < len(s):
+        #     curr_char = s[end_window]
+        #     if curr_char not in letters_in_window:
+        #         end_window += 1
+        #         letters_in_window.add(curr_char)
+        #         ans = max(ans, len(letters_in_window))                
+        #     else:
+
+        #         while start_window < end_window and s[start_window] != curr_char:
+        #             letters_in_window.remove(s[start_window])
+        #             start_window += 1
+
+        #         start_window += 1
+        #         end_window += 1
+        # return ans
+        if not s: return 0
+        visited = set()
+        start_w = 0
+        curr_w = 1
+        visited.add(s[0])
         ans = 1
-        letters_in_window = set()
-        letters_in_window.add(s[0])
-
-        while end_window < len(s):
-            curr_char = s[end_window]
-            if curr_char not in letters_in_window:
-                end_window += 1
-                letters_in_window.add(curr_char)
-                ans = max(ans, len(letters_in_window))                
+        while curr_w < len(s):
+            curr_l = s[curr_w]
+            
+            if curr_l in visited:
+                while start_w < curr_w and s[start_w] != curr_l:
+                    visited.remove(s[start_w])
+                    start_w += 1
+                start_w += 1
             else:
-
-                while start_window < end_window and s[start_window] != curr_char:
-                    letters_in_window.remove(s[start_window])
-                    start_window += 1
-                    
-                start_window += 1
-                end_window += 1
-
-
+                visited.add(curr_l)
+            curr_w += 1
+            ans = max(ans, len(visited))
         return ans
+
+
 
 
 # @lc code=end
