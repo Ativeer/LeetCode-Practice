@@ -54,19 +54,18 @@
 # @lc code=start
 class Solution:
     def reverse(self, x: int) -> int:
-        num = abs(x)
-        ans = 0
-        
-        while num > 0:
-            rem = num % 10
-            ans *= 10
-            ans += rem
-            if ans > (2**31)-1:
+        newNum = abs(x)
+        res = 0
+
+        while newNum:
+            rem = newNum % 10
+            if res > ((2**31) - 1)/10 - rem + 1:
                 return 0
 
-            num = num // 10
-        
-        if x > 0: return ans
-        return -ans
+            res *= 10
+            res += rem
+            newNum //= 10
+
+        return res if x >0 else -res
 # @lc code=end
 
