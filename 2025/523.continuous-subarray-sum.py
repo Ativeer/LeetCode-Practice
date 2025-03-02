@@ -74,20 +74,13 @@
 class Solution:
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:
         if len(nums) < 2: return False
-        prefixSum = []
-        for i in range(len(nums)):
-            if i == 0:
-                prev = 0
-            else:
-                prev = prefixSum[i-1]
-            prefixSum.append(prev+nums[i])
         
         compliment = {}
-
-        for i in range(len(prefixSum)):
-
-            s = prefixSum[i]
-            rem = s % k
+        prev_sum = 0
+        for i in range(len(nums)):
+            
+            prev_sum += nums[i]
+            rem = prev_sum % k
             
             if (not rem and i > 0) or (rem in compliment and compliment[rem]+1<i):
                 return True
